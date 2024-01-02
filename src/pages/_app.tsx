@@ -21,13 +21,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
           content="Twitter 'formaly X' clone App created by Mustapha Shuaibu 'Plannorium'"
         />
         <link rel="icon" href="/favicon.ico" />
-        <div className="container mx-auto flex">
-          <SideNav />
-          <div className="min-h-screen flex-grow border-x">
-            <Component {...pageProps} />
-          </div>
-        </div>
       </Head>
+      <div className="container mx-auto flex">
+        <SideNav />
+        <div className="min-h-screen flex-grow border-x">
+          <Component {...pageProps} />
+        </div>
+      </div>
     </SessionProvider>
   );
 };
