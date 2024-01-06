@@ -2,15 +2,35 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 import { api } from "~/utils/api";
+import NewTweetForm from "~/components/NewTweetForm";
+import { NextPage } from "next";
+import { InfiniteTweetList } from "~/components/InfiniteTweetList";
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <>
-      <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">
-        <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
-          Welcome, This is the Planner
-        </span>
-      </h1>
+      <header className="sticky top-0 z-10 border-b bg-white pt-2">
+        <h1 className="mb-2 px-2 text-lg font-bold">Home</h1>
+      </header>
+      <NewTweetForm />
     </>
   );
+};
+
+function RecentTwet() {
+  const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
+    {},
+    { getNextPageParam: (lastPage) => lastPage.nextCursor },
+  );
+  return (
+    <InfiniteTweetList
+      tweet={tweets.data?.pages.flatMap((page) => page.tweets)}
+      isError={tweets.isError}
+      isLoading={tweets.isLoading}
+      hasmore={tweets.hasNextPage}
+      fetchNewTweets={tweets.fetchNextPage}
+    />
+  );
 }
+
+export default Home;
