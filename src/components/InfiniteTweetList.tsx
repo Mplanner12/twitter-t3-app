@@ -1,4 +1,5 @@
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type Tweet = {
   id: string;
@@ -12,7 +13,7 @@ type Tweet = {
 type infiniteTweetsListProp = {
   isLoading: boolean;
   isError: boolean;
-  hasmore: boolean;
+  hasMore: boolean;
   fetchNextTweets: () => Promise<unknown>;
   tweets?: Tweet[];
 };
@@ -21,7 +22,7 @@ export const InfiniteTweetList = ({
   tweets,
   isError,
   isLoading,
-  hasmore,
+  hasMore,
   fetchNextTweets,
 }: infiniteTweetsListProp) => {
   if (isLoading) return <h1>Loading...</h1>;
@@ -34,5 +35,18 @@ export const InfiniteTweetList = ({
     );
   }
 
-  return <ul></ul>;
+  return (
+    <ul>
+      <InfiniteScroll
+        dataLength={tweets.length}
+        next={fetchNextTweets}
+        hasMore={hasMore}
+        loader={"Loading..."}
+      >
+        {tweets.map((tweet) => {
+          return <div key={tweet.id}>{tweet.content}</div>;
+        })}
+      </InfiniteScroll>
+    </ul>
+  );
 };

@@ -92,7 +92,7 @@ model User {
 
     // Non-Next Auth
     tweets    Tweet[]
-    Like      Like[]
+    likes     Like[]
     followers User[]  @relation(name: "followers")
     follows   User[]  @relation(name: "followers")
 }

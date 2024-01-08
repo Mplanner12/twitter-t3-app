@@ -13,6 +13,7 @@ const Home: NextPage = () => {
         <h1 className="mb-2 px-2 text-lg font-bold">Home</h1>
       </header>
       <NewTweetForm />
+      <RecentTwet />
     </>
   );
 };
@@ -24,11 +25,11 @@ function RecentTwet() {
   );
   return (
     <InfiniteTweetList
-      tweet={tweets.data?.pages.flatMap((page) => page.tweets)}
+      tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
       isError={tweets.isError}
       isLoading={tweets.isLoading}
-      hasmore={tweets.hasNextPage}
-      fetchNewTweets={tweets.fetchNextPage}
+      hasMore={!!tweets.hasNextPage}
+      fetchNextTweets={tweets.fetchNextPage}
     />
   );
 }
