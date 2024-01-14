@@ -84,6 +84,13 @@ export const TweetRouter = createTRPCRouter({
     }),
 });
 
+export interface TweetWhereUniqueInput {
+  id?: string;
+  content?: string;
+  createdAt?: Date;
+  userId?: string;
+}
+
 async function getInfiniteTweets({
   whereClause,
   ctx,
@@ -92,13 +99,13 @@ async function getInfiniteTweets({
 }: {
   whereClause?: Prisma.TweetWhereInput | any;
   limit: number;
-  cursor: { id: string; createdAt: Date } | undefined;
+  cursor: { createdAt: Date; id: string } | undefined;
   ctx: inferAsyncReturnType<typeof createTRPCContext>;
 }) {
   const currentUserId = ctx.session?.user.id;
   const data = await ctx.db.tweet.findMany({
     take: limit + 1,
-    cursor: cursor ? { createdAt_id: cursor } : undefined,
+    cursor: cursor && { createdAt_id: cursor },
     orderBy: [{ createdAt: "desc" }, { id: "desc" }],
     where: whereClause,
     select: {
