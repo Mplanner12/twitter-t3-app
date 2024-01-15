@@ -21,6 +21,10 @@ const config = {
     "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-redundant-type-constituents": "off",
 
     "@typescript-eslint/consistent-type-imports": [
       "warn",

@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 type ButtonProps = {
   small?: boolean;
   gray?: boolean;
-  className?: String;
+  className?: string;
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
