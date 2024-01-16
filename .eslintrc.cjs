@@ -13,7 +13,7 @@ const config = {
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
     // Feel free to reconfigure them to your own preference.
-    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-member-accessb": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-call": "off",

@@ -64,6 +64,8 @@ export const TweetRouter = createTRPCRouter({
         data: { content, userId: ctx.session.user.id },
       });
 
+      ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
+
       return tweet;
     }),
   toggleLike: protectedProcedure
